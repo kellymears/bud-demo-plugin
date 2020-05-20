@@ -1,0 +1,11 @@
+{
+  "project": {
+    "name": "Bud Demo",
+    "namespace": "bud-demo-plugin",
+    "description": "A simple plugin demonstrating Bud&#x27;s output",
+    "website": "https://roots.io/bud",
+    "author": "Kelly Mears",
+    "email": "kelly@roots.io"
+  },
+  "installed": ["bud"]
+}
