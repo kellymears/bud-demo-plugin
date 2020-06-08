@@ -7,9 +7,6 @@ import {edit} from './containers/edit'
 import {save} from './containers/save'
 import {attributes} from './attributes.json'
 
-/** styles */
-import './editor.css'
-
 /**
  * Registers a new block provided a unique name and an object defining its
  * behavior. Once registered, the block is made available as an option to any
@@ -18,18 +15,18 @@ import './editor.css'
  * @param {string}             name
  * @param {BlockConfiguration} settings
  */
-registerBlockType('bud-demo-plugin/bud-block', {
+registerBlockType('roots/bud-block', {
   /**
    * The block title.
    * @type {string}
    */
-  title: __('Bud Block', 'bud-demo-plugin'),
+  title: __('Bud Block', 'roots'),
 
   /**
    * A short description of the block.
    * @type {string}
    */
-  description: __('A demo Bud block with several fixins.', 'bud-demo-plugin'),
+  description: __('Bud block description.', 'roots'),
 
   /**
    * The block category.
@@ -48,7 +45,7 @@ registerBlockType('bud-demo-plugin/bud-block', {
    * Searchable keywords for discovery.
    * @type {array}
    */
-  keywords: ['Roots', 'Bud'],
+  keywords: ['bud', 'demo'],
 
   /**
    * Block styles
@@ -74,7 +71,7 @@ registerBlockType('bud-demo-plugin/bud-block', {
      * copy the direct link.
      * @type {bool}
      */
-    anchor: false,
+    anchor: true,
 
     /**
      * Enable alignments.
@@ -88,7 +85,7 @@ registerBlockType('bud-demo-plugin/bud-block', {
      * Dependent on the align definition.
      * @type {bool}
      */
-    alignWide: false,
+    alignWide: true,
 
     /**
      * This property adds a field to define a custom className

@@ -36,7 +36,7 @@ const edit = ({attributes, className, setAttributes}) => {
   return (
     <div className={className}>
       <RichText
-        placeholder={__('placeholder heading', 'bud-demo-plugin')}
+        placeholder={__('placeholder heading', 'roots')}
         tagName={'h2'}
         value={text || ''}
         onChange={value => setAttribute('text', value)}

@@ -1,6 +1,6 @@
-# bud-demo-plugin/Bud Demo
+# bud-demo-plugin/bud-demo-plugin
 
-A simple plugin demonstrating Bud&amp;#x27;s output
+Bud output reference.
 
 This project was bootstrapped with [🌱 Bud](https://github.com/roots/bud).
 
@@ -14,9 +14,9 @@ You can install this plugin via Composer on a [Bedrock install](https://roots.io
 
 ### via Composer
 
-\`\`\`sh
-composer require bud-demo-plugin/Bud Demo
-\`\`\`
+```sh
+composer require bud-demo-plugin/bud-demo-plugin
+```
 
 ### via WordPress Admin Panel
 
@@ -29,15 +29,15 @@ composer require bud-demo-plugin/Bud Demo
 
 From the project dir, try running:
 
-### \`yarn dev\`
+### `yarn dev`
 
 Runs the app in the development mode.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### \`yarn build\`
+### `yarn build`
 
-Transpiles and minifies the block source files to the \`dist\` directory.
+Transpiles and minifies the block source files to the `dist` directory.
 
 Your block is ready to be installed and/or distributed!
 

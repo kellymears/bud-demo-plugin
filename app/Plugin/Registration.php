@@ -4,13 +4,11 @@ namespace BudDemoPlugin\Plugin;
 
 use Illuminate\Support\Collection;
 use Psr\Container\ContainerInterface;
-use BudDemoPlugin\Asset\Contract\AssetInterface;
 use BudDemoPlugin\Block\Contract\BlockInterface;
-use BudDemoPlugin\Block\Contract\BlockRepositoryInterface;
-use BudDemoPlugin\Asset\Contract\ManifestInterface;
+use BudDemoPlugin\Asset\Contract\CollectionInterface;
 
 /**
- * Register bud-demo-plugin/bud-demo block assets
+ * Register bud-demo-plugin/bud-demo-plugin block assets
  *
  * @see Enqueueing Editor Assets <https://git.io/JvPHy>
  * @see Dependency Extraction Webpack Plugin <https://git.io/Jv1ll>
@@ -20,77 +18,77 @@ class Registration
     /** @var ContainerInterface */
     public $bud;
 
-    /** @var Collection */
-    public $collection;
-
-    /** @var BlockRepositoryInterface */
-    public $blocks;
-
-    /** @var ManifestInterface */
-    public $manifest;
+    /** @var CollectionInterface */
+    public $assets;
 
     /**
       * Class constructor.
       *
-      * @param ContainerInterface       $bud
-      * @param Collection               $collection
-      * @param BlockRepositoryInterface $blocks
-      * @param ManifestInterface        $manifest
+      * @param ContainerInterface  bud
+      * @param CollectionInterface manifest
       */
     public function __construct(
         ContainerInterface $bud,
-        Collection $collection,
-        BlockRepositoryInterface $blocks,
-        ManifestInterface $manifest
+        CollectionInterface $assets
     ) {
         $this->bud = $bud;
-        $this->collection = $collection;
-        $this->blocks = $blocks;
-        $this->manifest = $manifest;
+        $this->assets = $assets;
     }
 
     /**
       * Class invocation.
       *
-      * @throws \WP_Error
       * @return void
       */
     public function __invoke(): void
     {
-        $this->load();
-        $this->register();
-    }
+        /** Register client assets */
+        $this->assets->map(function ($asset) {
+            $this->registerAsset($asset);
+        });
 
-    /**
-      * Load blocks and assets.
-      *
-      * @return void
-      */
-    protected function load(): void
-    {
-        $this->bud->get('plugin.blocks')->each(function ($name) {
-            $block = $this->bud->make(BlockInterface::class);
-
-            $block->setName($name);
-            $block->setAssets($this->manifest->getAssets($block));
-
-            $this->blocks->add($block);
+        /** Register blocks */
+        $this->assets->ofType('block')->map(function ($assets) {
+            $this->registerBlock($assets);
         });
     }
 
     /**
-      * Register blocks and their assets.
-      *
-      * @return void
-      */
-    protected function register(): void
+     * Register asset.
+     *
+     * @param  asset
+     * @return void
+     */
+    public function registerAsset($asset)
     {
-        $this->blocks->all()->each(function (BlockInterface $block) {
-            $block->getAssets()->each(function (AssetInterface $asset) {
-                $asset->register();
-            });
-        })->each(function (BlockInterface $block) {
-            $block->register();
+        $asset->contains('js')
+            ? wp_register_script(...$asset->registration()->toArray())
+            : wp_register_style(...$asset->registration()->toArray());
+
+        $asset->put('registered', true);
+    }
+
+    /**
+     * Register block assets.
+     *
+     * @param  CollectionInterface assets
+     * @return void
+     */
+    public function registerBlock(CollectionInterface $assets): void
+    {
+        /** Make a new block object. */
+        $block = $this->bud->make(
+            BlockInterface::class,
+            ['name' => $assets->pluck('block')->first()]
+        );
+
+        /** Set assets. */
+        $assets->each(function ($asset) use ($block) {
+            $block->set($asset->get('hook'), $asset->get('name'));
         });
+
+        /** Register the object */
+        register_block_type($block)
+            && $assets->put('registered', true);
     }
 }

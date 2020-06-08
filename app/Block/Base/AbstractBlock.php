@@ -2,21 +2,35 @@
 
 namespace BudDemoPlugin\Block\Base;
 
+use \WP_Block_Type;
 use Illuminate\Support\Collection;
 use Psr\Container\ContainerInterface;
-use BudDemoPlugin\Asset\Contract\AssetInterface;
 use BudDemoPlugin\Block\Contract\BlockInterface;
 
 /**
  * Block class.
  */
-abstract class AbstractBlock extends \WP_Block_Type implements BlockInterface
-{
+abstract class AbstractBlock extends WP_Block_Type implements BlockInterface, ContainerInterface {
     /** @var string */
-    public $name;
+    public $name = null;
 
-    /** @var Collection */
-    public $assets;
+    /** @var string */
+    public $script = null;
+
+    /** @var string */
+    public $style = null;
+
+    /** @var string */
+    public $editor_script = null;
+
+    /** @var string */
+    public $editor_style = null;
+
+    /** @var array */
+    public $attributes = [];
+
+    /** @var string */
+    public $render_callback = null;
 
     /**
      * Constructor.
@@ -25,76 +39,43 @@ abstract class AbstractBlock extends \WP_Block_Type implements BlockInterface
      * @param ContainerInterface
      */
     public function __construct(
-        Collection $collection,
-        ContainerInterface $bud
+        ContainerInterface $bud,
+        string $name
     ) {
         $this->bud = $bud;
-        $this->assets = $collection::make([]);
+        $this->name = $name;
     }
 
     /**
-     * Get name.
+     * Get a block property.
      *
-     * @return string
+     * @param  string id
+     * @return mixed
      */
-    public function getName(): string
+    public function get($id)
     {
-        return $this->name;
+        return $this->{$id};
     }
 
     /**
-     * Set the block name.
+     * Set a block asset
      *
      * @param  string
      * @return void
      */
-    public function setName(string $name): void
+    public function set(string $property, string $name): void
     {
-        $this->name = join('/', [
-            $this->bud->get('plugin.namespace'),
-            $name,
-        ]);
+        $this->{$property} = $name;
     }
 
     /**
-     * Get assets
+     * Has a block asset
      *
-     * @return Collection $assets
+     * @param  string
+     * @return bool
      */
-    public function getAssets(): Collection
-    {
-        return $this->assets;
-    }
-
-    /**
-     * Set assets
-     *
-     * @return void
-     */
-    public function setAssets(Collection $assets): void
-    {
-        $assets->each(function (AssetInterface $asset) {
-            if ($asset->getContext() == 'editor') {
-                $context = join('_', [$asset->getContext(), $asset->getType()]);
-            } else {
-                $context = $asset->getType();
-            }
-
-            $this->assets->put($context, $asset);
-        });
-    }
-
-    /**
-     * Register block.
-     *
-     * @return void
-     */
-     public function register(): void
+     public function has($id): bool
      {
-         $this->assets->each(function (AssetInterface $asset, string $context) {
-             $this->{$context} = $asset->getName();
-         });
-
-         register_block_type($this);
+         return property_exists($this, $id);
      }
 }

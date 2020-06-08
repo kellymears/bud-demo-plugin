@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:  Bud Demo
+ * Plugin Name:  bud-demo-plugin
  * Plugin URI:   https://roots.io/bud
- * Description:  A simple plugin demonstrating Bud&amp;#x27;s output
- * Author:       Kelly Mears <kelly@roots.io>
+ * Description:  Bud output reference.
+ * Author:       Kelly M. <kelly@roots.io>
  * License:      MIT
  * Text Domain:  bud-demo-plugin
  *
@@ -13,7 +13,7 @@
 namespace BudDemoPlugin;
 
 /**
- * Bud Demo
+ * bud-demo-plugin
  */
 (new class {
     /** @var string */
@@ -69,7 +69,7 @@ namespace BudDemoPlugin;
     public function composerError(): void
     {
         print '<div class="notice notice-error">
-            <p><strong>There\'s a problem with the Bud Demo plugin.</strong></p>
+            <p><strong>There\'s a problem with the bud-demo-plugin plugin.</strong></p>
             <p>Please run <code>composer install</code> in <code>' . __DIR__ .'</code></p>
         </div>';
     }

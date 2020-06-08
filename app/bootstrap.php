@@ -13,64 +13,36 @@ use function DI\create;
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
-$builder = new ContainerBuilder;
-
 /**
  * Build the container instance
  */
-$builder->addDefinitions([
-    /**
-     * Plugin bindings
-     */
+return (new ContainerBuilder)->addDefinitions([
+    /** Bindings */
     Plugin\Registration::class => autowire(Plugin\Registration::class),
     Plugin\Activate::class => Plugin\Activate::class,
     Plugin\Deactivate::class => Plugin\Deactivate::class,
-    Asset\Contract\AssetInterface::class => autowire(Asset\Asset::class),
     Block\Contract\BlockInterface::class => autowire(Block\Block::class),
-    Block\Contract\BlockRepositoryInterface::class => autowire(Block\BlockRepository::class),
-    Asset\Contract\ManifestInterface::class => autowire(Asset\Manifest::class),
+    Asset\Contract\CollectionInterface::class => function (ContainerInterface $bud) {
+        return Asset\Collection::make()->fromFile($bud, '/dist/manifest.json');
+    },
 
-    /**
-     * Plugin aliases
-     */
+    /** Aliases */
     'plugin.activate' => create(Plugin\Activate::class),
     'plugin.deactivate' => create(Plugin\Deactivate::class),
     'plugin.registration' => autowire(Plugin\Registration::class),
-    'asset' => autowire(Asset\Asset::class),
     'block' => autowire(Block\Block::class),
-    'manifest' => autowire(Asset\Manifest::class),
-    'blocks' => autowire(Block\BlockRepository::class),
+    'asset' => autowire(Asset\Collection::class),
 
-    /**
-     * Vendor bindings
-     */
+    /** Vendor */
     Illuminate\Support\Collection::class => autowire(Illuminate\Support\Collection::class),
 
-    /**
-     * Vendor aliases
-     */
+    /** Vendor aliases */
     'collection' => autowire('Illuminate\Support\Collection'),
 
     /**
-     * Config
+     * Reference
      */
     'plugin.namespace' => 'bud-demo-plugin',
-    'plugin.manifest' => function (ContainerInterface $bud) {
-        if (! $manifestPath = realpath(__DIR__ . '/../dist/assets.json')) {
-            return;
-        }
-
-        return $bud->get('collection')::make(
-            json_decode(file_get_contents($manifestPath))
-        );
-    },
-    'plugin.blocks' => function(ContainerInterface $bud) {
-        return $bud->get('collection')::make(
-            glob($bud->get('path.plugin.src.blocks') . '/*', GLOB_ONLYDIR)
-        )->map(function ($path) {
-            return str_replace($this->bud->get('path.plugin.src.blocks') . '/', '', $path);
-        });
-    },
     'plugin.url' => plugins_url('', __DIR__),
     'path.wp' => WP_CONTENT_DIR,
     'path.wp.plugins' => plugin_dir_path('', __DIR__),
@@ -79,10 +51,9 @@ $builder->addDefinitions([
     'path.plugin.dist' => realpath(__DIR__ . '/../dist/'),
     'path.plugin.src' => realpath(__DIR__ . '/../src/'),
     'path.plugin.src.blocks' => realpath(__DIR__ . '/../src/blocks'),
+    'path.plugin.src.plugins' => realpath(__DIR__ . '/../src/plugins'),
     'path.plugin.storage' => realpath(__DIR__ . '/../storage/'),
     'path.plugin.storage.cache' => realpath(__DIR__ . '/../storage/cache'),
     'path.plugin.activate' => realpath(__DIR__ . '/Plugin/Activate.php'),
     'path.plugin.deactivate' => realpath(__DIR__ . '/Plugin/Deactivate.php'),
-]);
-
-return $builder->build();
+])->build();

@@ -14,12 +14,14 @@ import PropTypes from 'prop-types'
  * @return {WPElement} Element to render.
  */
 const save = ({attributes}) => {
-  const className = getBlockDefaultClassName('bud-demo-plugin/bud-block')
+  const className = getBlockDefaultClassName('roots/bud-block')
   const {text} = attributes
 
   return (
     <>
-      {text && <RichText.Content tagName={'h2'} className={`${className}__text`} value={text} />}
+      {text && (
+        <RichText.Content tagName={'h2'} className={`${className}__text`} value={text} />
+      )}
 
       <InnerBlocks.Content />
     </>

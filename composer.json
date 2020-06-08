@@ -1,12 +1,12 @@
 {
-  "name": "bud-demo-plugin/bud-demo",
+  "name": "bud-demo-plugin/bud-demo-plugin",
   "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "A simple plugin demonstrating Bud&amp;#x27;s output",
+  "description": "Bud output reference.",
   "homepage": "https://roots.io/bud",
   "authors": [
     {
-      "name": "Kelly Mears",
+      "name": "Kelly M.",
       "email": "kelly@roots.io"
     }
   ],
@@ -19,7 +19,7 @@
   "require": {
     "php": "^7.2",
     "php-di/php-di": "^6.1",
-    "tightenco/collect": "^7.11",
+    "tightenco/collect": "^7.12",
     "roots/support": "^1.0"
   },
   "scripts": {

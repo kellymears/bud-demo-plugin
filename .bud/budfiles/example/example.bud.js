@@ -18,12 +18,11 @@ module.exports = {
       required: true,
     },
   ],
-  actions: [
+  tasks: [
     {
-      action: 'template',
-      template: 'Component.js.bud',
-      path: 'src/components/{{componentName}}.js',
-      parser: 'babel',
+      task: 'compile',
+      src: 'Component.js.hbs',
+      dest: 'src/components/{{componentName}}.js',
     },
   ],
 }

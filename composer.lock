@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ec4b646c472009a66e11c7324ea40ca",
+    "content-hash": "fa33212e12b53d90a363850ab174fc7b",
     "packages": [
         {
             "name": "jeremeamia/superclosure",
@@ -593,7 +593,7 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v7.11.0",
+            "version": "v7.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
