@@ -2,8 +2,18 @@
   "name": "@roots/bud-demo-plugin",
   "description": "Bud output reference.",
   "homepage": "https://roots.io/bud",
-  "licenses": [{"type": "MIT", "url": "http://opensource.org/licenses/MIT"}],
-  "authors": [{"name": "Kelly M.", "email": "kelly@roots.io"}],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Kelly M.",
+      "email": "kelly@roots.io"
+    }
+  ],
   "private": true,
   "scripts": {
     "generate": "bud generate",
@@ -66,5 +76,7 @@
     "write-file-webpack-plugin": "^4.5.1"
   },
   "dependencies": {},
-  "browserslist": ["extends @wordpress/browserslist-config"]
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ]
 }

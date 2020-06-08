@@ -8,10 +8,9 @@ const entry = ({entry}) => ({
     ...globber([
       {
         from: 'plugins',
-        entries: [
-          ['script', 'plugin.js'],
-        ],
-      }, {
+        entries: [['script', 'plugin.js']],
+      },
+      {
         from: 'blocks',
         entries: [
           ['editor_script', 'editor.js'],

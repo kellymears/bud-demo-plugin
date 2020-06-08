@@ -1,20 +1,20 @@
-# Copyright (C) 2020 Kelly Mears <kelly@roots.io>
-# This file is distributed under the same license as the Bud Demo plugin.
+# Copyright (C) 2020 Kelly M. <kelly@roots.io>
+# This file is distributed under the same license as the bud-demo-plugin plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bud Demo\n"
+"Project-Id-Version: bud-demo-plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bud-demo-plugin\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-20T18:10:47+00:00\n"
+"POT-Creation-Date: 2020-06-08T20:38:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 
 #. Plugin Name of the plugin
-msgid "Bud Demo"
+msgid "bud-demo-plugin"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -22,24 +22,24 @@ msgid "https://roots.io/bud"
 msgstr ""
 
 #. Description of the plugin
-msgid "A simple plugin demonstrating Bud&amp;#x27;s output"
+msgid "Bud output reference."
 msgstr ""
 
 #. Author of the plugin
-msgid "Kelly Mears <kelly@roots.io>"
+msgid "Kelly M. <kelly@roots.io>"
 msgstr ""
 
-#: dist/bud-block/editor.73fd847e356d0d09f7b3.js:302
+#: dist/blocks/bud-block/editor_script.fc3c6dd2fd3ae4d990bd.js:1
 #: src/blocks/bud-block/containers/edit.js:39
 msgid "placeholder heading"
 msgstr ""
 
-#: dist/bud-block/editor.73fd847e356d0d09f7b3.js:385
-#: src/blocks/bud-block/editor.js:26
+#: dist/blocks/bud-block/editor_script.fc3c6dd2fd3ae4d990bd.js:1
+#: src/blocks/bud-block/editor.js:23
 msgid "Bud Block"
 msgstr ""
 
-#: dist/bud-block/editor.73fd847e356d0d09f7b3.js:391
-#: src/blocks/bud-block/editor.js:32
-msgid "A demo Bud block with several fixins."
+#: dist/blocks/bud-block/editor_script.fc3c6dd2fd3ae4d990bd.js:1
+#: src/blocks/bud-block/editor.js:29
+msgid "Bud block description."
 msgstr ""

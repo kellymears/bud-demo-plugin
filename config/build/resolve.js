@@ -3,10 +3,8 @@ const {projectPath} = require('./util')
 /**
  * Webpack resolves.
  */
-const resolve = ({
-  aliases,
-}) => ({
-  resolve:{
+const resolve = ({aliases}) => ({
+  resolve: {
     alias: {
       '@blocks': projectPath('src/blocks'),
       '@components': projectPath('src/components'),
@@ -14,15 +12,8 @@ const resolve = ({
       '@hooks': projectPath('src/hooks'),
       ...aliases,
     },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.css',
-    ],
-    modules: [
-      projectPath('node_modules'),
-    ],
+    extensions: ['.js', '.json', '.jsx', '.css'],
+    modules: [projectPath('node_modules')],
   },
 })
 

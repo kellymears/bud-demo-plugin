@@ -27,16 +27,18 @@ const plugins = ({dev}) => ({
     }),
     new ManifestPlugin({
       fileName: 'manifest.json',
-			writeToFileEmit: true,
-			publicPath: isProduction ? `/dist/` : `//${dev.host}:${dev.port}/dist/`,
+      writeToFileEmit: true,
+      publicPath: isProduction ? `/dist/` : `//${dev.host}:${dev.port}/dist/`,
     }),
     new WebpackBar(),
     new DashboardPlugin(),
-    ...(!isProduction ? [
-      new HotModuleReplacementPlugin(),
-      new NoEmitOnErrorsPlugin(),
-      new WriteFilePlugin(),
-    ]:[]),
+    ...(!isProduction
+      ? [
+          new HotModuleReplacementPlugin(),
+          new NoEmitOnErrorsPlugin(),
+          new WriteFilePlugin(),
+        ]
+      : []),
   ],
 })
 

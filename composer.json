@@ -10,10 +10,15 @@
       "email": "kelly@roots.io"
     }
   ],
-  "keywords": ["wordpress", "wordpress-block"],
+  "keywords": [
+    "wordpress",
+    "wordpress-block"
+  ],
   "autoload": {
     "psr-4": {
-      "BudDemoPlugin\\": ["app/"]
+      "BudDemoPlugin\\": [
+        "app/"
+      ]
     }
   },
   "require": {
@@ -23,6 +28,8 @@
     "roots/support": "^1.0"
   },
   "scripts": {
-    "lint": ["phpcs --ignore=vendor,dist --extensions=php --standard=PSR12 ."]
+    "lint": [
+      "phpcs --ignore=vendor,dist --extensions=php --standard=PSR12 ."
+    ]
   }
 }

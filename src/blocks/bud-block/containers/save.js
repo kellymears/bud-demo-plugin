@@ -20,7 +20,11 @@ const save = ({attributes}) => {
   return (
     <>
       {text && (
-        <RichText.Content tagName={'h2'} className={`${className}__text`} value={text} />
+        <RichText.Content
+          tagName={'h2'}
+          className={`${className}__text`}
+          value={text}
+        />
       )}
 
       <InnerBlocks.Content />
