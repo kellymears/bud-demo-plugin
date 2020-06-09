@@ -11,7 +11,10 @@ const rules = ({config}) => ({
       test: /\.(js|jsx)$/,
       include: projectPath('src'),
       exclude: /node_modules/,
-      use: [{loader: 'babel-loader'}, {loader: 'eslint-loader'}],
+      use: [
+        {loader: 'babel-loader'},
+        {loader: 'eslint-loader'},
+      ],
     },
     {
       test: /\.css$/,

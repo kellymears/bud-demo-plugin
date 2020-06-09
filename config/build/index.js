@@ -37,7 +37,7 @@ const webpack = (config = DEFAULT) => ({
   ...plugins({dev: config.dev, plugins: config.plugins}),
   ...devServer({devServer: config.dev}),
   ...output({dev: config.dev}),
-  module: {...rules({config: config.rules})},
+  module: { ...rules({config: config.rules}) },
   context: projectPath('src/'),
   mode: isProduction ? 'production' : 'development',
   devtool: isProduction ? 'hidden-source-map' : 'cheap-module-source-map',
