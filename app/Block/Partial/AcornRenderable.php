@@ -2,15 +2,15 @@
 
 namespace BudDemoPlugin\Block\Partial;
 
-use eftec\bladeone\BladeOne as Blade;
 use Psr\Container\ContainerInterface;
+use function Roots\view;
 
 /**
- * Renderable block
+ * Acorn rendered block.
  */
-trait BladeRenderable {
+trait AcornRenderable {
     /** @var string */
-    protected $view = 'render.blade.php';
+    protected $view = 'render';
 
     /** @var string */
     protected $viewPath;
@@ -23,12 +23,14 @@ trait BladeRenderable {
     public function hasView(): bool
     {
         $blockDir = explode('/', $this->get('name'))[1];
-        $this->view = join('/', [$blockDir, $this->view]);
 
         $this->viewPath = join('/', [
-          $this->bud->get('path.plugin.src.blocks'),
-          $this->view,
+            $this->bud->get('path.plugin.src.blocks'),
+            $blockDir,
+            "{$this->view}.blade.php",
         ]);
+
+        $this->view = join('.', [$blockDir, $this->view]);
 
         return realpath($this->viewPath);
     }
@@ -41,10 +43,11 @@ trait BladeRenderable {
     public function setView(): void
     {
         $this->bud->set('view', function (ContainerInterface $bud) {
-            return new Blade(
-                $bud->get('path.plugin.src.blocks'),
-                $bud->get('path.plugin.storage.cache')
+            view()->addLocation(
+                $bud->get('path.plugin.src.blocks')
             );
+
+            return view();
         });
 
         $this->set('render_callback', [$this, 'renderView']);
@@ -58,8 +61,9 @@ trait BladeRenderable {
      */
     public function renderView(array $attributes): string
     {
-        return $this->bud->get('view')->run($this->view, [
-            'attr' => (object) $attributes,
-        ]);
+        return $this->bud->get('view')->make(
+            $this->view,
+            ['attr' => (object) $attributes]
+        );
     }
 }
