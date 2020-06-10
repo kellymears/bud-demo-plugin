@@ -1,6 +1,6 @@
 # bud-demo-plugin/bud-demo-plugin
 
-Bud output reference.
+Bud output testing and demonstration
 
 This project was bootstrapped with [🌱 Bud](https://github.com/roots/bud).
 

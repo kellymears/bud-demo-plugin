@@ -1,7 +1,6 @@
 <?php
 /**
  * Called on uninstall.
- *
  */
 
 if (! current_user_can('activate_plugins')) {

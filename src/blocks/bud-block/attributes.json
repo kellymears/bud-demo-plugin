@@ -1,8 +1,0 @@
-{
-  "attributes": {
-    "text": {
-      "type": "string",
-      "selector": "h2"
-    }
-  }
-}

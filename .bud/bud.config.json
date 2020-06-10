@@ -2,7 +2,7 @@
   "project": {
     "name": "bud-demo-plugin",
     "namespace": "bud-demo-plugin",
-    "description": "Bud output reference.",
+    "description": "Bud output testing and demonstration",
     "website": "https://roots.io/bud",
     "author": "Kelly M.",
     "email": "kelly@roots.io"

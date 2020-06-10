@@ -1,6 +1,6 @@
 {
-  "name": "@roots/bud-demo-plugin",
-  "description": "Bud output reference.",
+  "name": "@bud-demo-plugin/bud-demo-plugin",
+  "description": "Bud output testing and demonstration",
   "homepage": "https://roots.io/bud",
   "licenses": [{"type": "MIT", "url": "http://opensource.org/licenses/MIT"}],
   "authors": [{"name": "Kelly M.", "email": "kelly@roots.io"}],

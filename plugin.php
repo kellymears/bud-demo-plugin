@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  bud-demo-plugin
  * Plugin URI:   https://roots.io/bud
- * Description:  Bud output reference.
+ * Description:  Bud output testing and demonstration
  * Author:       Kelly M. <kelly@roots.io>
  * License:      MIT
  * Text Domain:  bud-demo-plugin
@@ -13,7 +13,9 @@
 namespace BudDemoPlugin;
 
 /**
- * bud-demo-plugin
+ * bud-demo-plugin/bud-demo-plugin
+ *
+ * @note this
  */
 (new class {
     /** @var string */
@@ -21,6 +23,9 @@ namespace BudDemoPlugin;
 
     /** @var string */
     public $container;
+
+    /** @var string */
+    public $config;
 
     /** @var Psr\Container\ContainerInterface */
     public $bud;
@@ -30,41 +35,41 @@ namespace BudDemoPlugin;
      */
     public function __construct()
     {
-        $this->autoload = realpath(__DIR__ . '/vendor/autoload.php');
-        $this->bootstrap = realpath(__DIR__ . '/app/bootstrap.php');
+        $this->dir = __DIR__;
+        $this->autoload = realpath("{$this->dir}/vendor/autoload.php");
+        $this->bootstrap = realpath("{$this->dir}/bud/lib/bootstrap.php");
     }
 
     /**
-     * Instantiate the plugin.
+     * Class invocation.
      */
     public function __invoke()
     {
         if (! $this->autoload) {
             add_action('admin_notices', [$this, 'composerError']);
+
             return;
         }
 
-        /**
-         * Instantiate the plugin container.
-         */
+        /** Require autoloader */
+        require_once $this->autoload;
+
+        /** Set dir reference for bootstrap */
+        $dir = $this->dir;
+
+        /** Instantiate the Bud container */
         $this->bud = require $this->bootstrap;
 
-        /**
-         * Register script and style assets.
-         */
-        add_action('init', $this->bud->get('plugin.registration'));
-
-        /**
-         * Handle plugin lifecycle.
-         */
+        /** Handle plugin lifecycle. */
         register_activation_hook(__FILE__, $this->bud->get('plugin.activate'));
         register_deactivation_hook(__FILE__, $this->bud->get('plugin.deactivate'));
+
+        /** Register script and style assets. */
+        add_action('init', $this->bud->get('asset.registration'));
     }
 
     /**
-     * Alert if autoloader can't be found.
-     *
-     * @return void
+     * Autoloader not found
      */
     public function composerError(): void
     {

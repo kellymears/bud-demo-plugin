@@ -2,7 +2,7 @@
   "name": "bud-demo-plugin/bud-demo-plugin",
   "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "Bud output reference.",
+  "description": "Bud output testing and demonstration",
   "homepage": "https://roots.io/bud",
   "authors": [
     {
@@ -13,13 +13,14 @@
   "keywords": ["wordpress", "wordpress-block"],
   "autoload": {
     "psr-4": {
+      "Roots\\Bud\\": ["bud/lib/"],
       "BudDemoPlugin\\": ["app/"]
     }
   },
   "require": {
     "php": "^7.2",
     "eftec/bladeone": "^3.45",
-    "php-di/php-di": "^6.1",
+    "php-di/php-di": "^6.2",
     "tightenco/collect": "^7.12",
     "roots/support": "^1.0"
   },

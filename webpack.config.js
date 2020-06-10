@@ -1,7 +1,7 @@
-const {webpack, defaults} = require('./config/build')
+const {webpack, defaults} = require('./bud/build')
 
 /**
- * Webpack configuration
+ * Bud webpack configuration
  *
  * You should not need to change the webpack config
  * in order to use this framework as designed.
