@@ -20,14 +20,9 @@ trait Renderable {
     public function hasView(): bool
     {
         $blockDir = explode('/', $this->get('name'))[1];
+        $this->templatePath = join('/', [$this->bud->get('path.plugin.src.blocks'), $blockDir, $this->view]);
 
-        $this->templatePath = join('/', [
-          $this->bud->get('path.plugin.src.blocks'),
-          $blockDir,
-          $this->view,
-        ]);
-
-        return realpath($this->viewPath);
+        return realpath($this->templatePath);
     }
 
     /**
