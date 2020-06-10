@@ -60,12 +60,8 @@ namespace BudDemoPlugin;
         /** Instantiate the Bud container */
         $this->bud = require $this->bootstrap;
 
-        /** Handle plugin lifecycle. */
-        register_activation_hook(__FILE__, $this->bud->get('plugin.activate'));
-        register_deactivation_hook(__FILE__, $this->bud->get('plugin.deactivate'));
-
-        /** Register script and style assets. */
-        add_action('init', $this->bud->get('asset.registration'));
+        /** Do plugin main */
+        $this->bud->make('plugin.init')();
     }
 
     /**

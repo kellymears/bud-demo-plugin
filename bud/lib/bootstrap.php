@@ -26,6 +26,7 @@ $config = (object) [
 $projectClasses = (object) [
     'activate' => "{$config->plugin->namespace}\\Plugin\\Activate",
     'deactivate' => "{$config->plugin->namespace}\\Plugin\\Deactivate",
+    'main' => "{$config->plugin->namespace}\\Plugin\\Main",
     'registration' => "{$config->plugin->namespace}\\Asset\\Registration",
 ];
 
@@ -33,11 +34,15 @@ $projectClasses = (object) [
  * Build the container instance
  */
 return (new ContainerBuilder)->addDefinitions([
-    \Roots\Bud\Block\Contract\BlockInterface::class => autowire( \Roots\Bud\Block\Block::class),
+    \Roots\Bud\Plugin\Init::class => autowire(\Roots\Bud\Plugin\Init::class),
+    'plugin.init' => autowire(\Roots\Bud\Plugin\Init::class),
+
+    \Roots\Bud\Block\Contract\BlockInterface::class => autowire(\Roots\Bud\Block\Block::class),
+    'block' => autowire(\Roots\Bud\Block\Block::class),
+
     \Roots\Bud\Asset\Contract\CollectionInterface::class => function (ContainerInterface $bud) {
         return \Roots\Bud\Asset\Collection::make()->fromFile($bud, '/dist/manifest.json');
     },
-    'block' => autowire(\Roots\Bud\Block\Block::class),
     'asset' => autowire(\Roots\Bud\Asset\Collection::class),
 
     /**
@@ -47,10 +52,13 @@ return (new ContainerBuilder)->addDefinitions([
     'collection' => autowire('Illuminate\Support\Collection'),
 
     /**
-     * Reference
+     * References
      */
     'plugin.namespace' => $config->plugin->namespace,
     'plugin.url' => $config->plugin->url,
+
+    'block.namespace' => $config->block->namespace,
+
     'path.wp' => WP_CONTENT_DIR,
     'path.wp.plugins' => realpath($config->plugin->filesystem['base'] . '/../'),
     'path.plugin' => $normalizedPath = realpath(rtrim($config->plugin->filesystem['base'], '/')),
@@ -62,14 +70,18 @@ return (new ContainerBuilder)->addDefinitions([
     'path.plugin.storage.cache' => realpath(join('/', [$normalizedPath, $config->plugin->filesystem['cache']])),
     'path.plugin.activate' => realpath(join('/', [$normalizedPath, 'app/Plugin/Activate.php'])),
     'path.plugin.deactivate' => realpath(join('/', [$normalizedPath, 'app/Plugin/Deactivate.php'])),
-    'block.namespace' => $config->block->namespace,
 ])->addDefinitions([
     $projectClasses->registration => autowire($projectClasses->registration),
-    $projectClasses->activate => $projectClasses->activate,
-    $projectClasses->deactivate => $projectClasses->deactivate,
-    'plugin.activate' => create($projectClasses->activate),
-    'plugin.deactivate' => create($projectClasses->deactivate),
     'asset.registration' => autowire($projectClasses->registration),
+
+    $projectClasses->activate => autowire($projectClasses->activate),
+    'plugin.activate' => create($projectClasses->activate),
+
+    $projectClasses->deactivate => autowire($projectClasses->deactivate),
+    'plugin.deactivate' => create($projectClasses->deactivate),
+
+    $projectClasses->main => autowire($projectClasses->main),
+    'plugin.main' => create($projectClasses->main),
 ])->addDefinitions(
     $config->bindings
 )->build();
