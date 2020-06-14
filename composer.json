@@ -10,19 +10,25 @@
       "email": "kelly@roots.io"
     }
   ],
-  "keywords": ["wordpress", "wordpress-block"],
+  "keywords": [
+    "wordpress",
+    "wordpress-block"
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:roots/bud-support"
+    }
+  ],
   "autoload": {
     "psr-4": {
-      "Roots\\Bud\\": ["bud/lib/"],
-      "BudDemoPlugin\\": ["app/"]
+      "BudDemoPlugin\\": ["app/"],
+      "Roots\\Bud\\Support\\": ["app/"]
     }
   },
   "require": {
     "php": "^7.2",
-    "eftec/bladeone": "^3.45",
-    "php-di/php-di": "^6.2",
-    "tightenco/collect": "^7.12",
-    "roots/support": "^1.0"
+    "roots/bud-support": "dev-master"
   },
   "scripts": {
     "lint": ["phpcs --ignore=vendor,dist --extensions=php --standard=PSR12 ."]

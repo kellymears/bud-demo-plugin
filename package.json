@@ -2,14 +2,23 @@
   "name": "@bud-demo-plugin/bud-demo-plugin",
   "description": "Bud output testing and demonstration",
   "homepage": "https://roots.io/bud",
-  "licenses": [{"type": "MIT", "url": "http://opensource.org/licenses/MIT"}],
-  "authors": [{"name": "Kelly M.", "email": "kelly@roots.io"}],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Kelly M.",
+      "email": "kelly@roots.io"
+    }
+  ],
   "private": true,
   "scripts": {
-    "generate": "bud generate",
-    "dev": "cross-env NODE_ENV=hmr webpack-dashboard -t Bud -- webpack-dev-server --inline --watch --config webpack.config.js",
-    "build": "cross-env NODE_ENV=development webpack-dashboard -t Bud -- webpack --inline --watch --config webpack.config.js",
-    "build:production": "cross-env NODE_ENV=production webpack --progress --inline --config webpack.config.js",
+    "bud": "bud",
+    "bud:dev": "node ./node_modules/@roots/budpack/bin/budpack dev",
+    "bud:build": "node ./node_modules/@roots/budpack/bin/budpack build",
     "lint": "run-s -c lint:*",
     "lint:css": "stylelint ./src/**/*.css",
     "lint:js": "eslint ./src/**/*.js",
@@ -23,7 +32,8 @@
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
-    "@roots/bud": "roots/bud#master",
+    "@roots/bud": "@roots/bud#master",
+    "@roots/budpack": "@roots/budpack",
     "@wordpress/browserslist-config": "^2.6.0",
     "@wordpress/dependency-extraction-webpack-plugin": "^2.6.0",
     "autoprefixer": "^9.8.0",
@@ -64,7 +74,5 @@
     "webpack-manifest-plugin": "^2.2.0",
     "webpackbar": "^4.0.0",
     "write-file-webpack-plugin": "^4.5.1"
-  },
-  "dependencies": {},
-  "browserslist": ["extends @wordpress/browserslist-config"]
+  }
 }
