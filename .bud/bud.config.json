@@ -1,10 +1,10 @@
 {
   "project": {
-    "name": "bud-demo-plugin",
-    "namespace": "bud-demo-plugin",
-    "description": "Bud output testing and demonstration",
-    "website": "https://roots.io/bud",
-    "author": "Kelly M.",
-    "email": "kelly@roots.io"
+    "name": "acme-project",
+    "namespace": "acme-co",
+    "description": "Anvil drop-shipping application",
+    "website": "https://acme.co",
+    "author": "Wiley C.",
+    "email": "wiley@gmail.com"
   }
 }

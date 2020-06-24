@@ -19,7 +19,7 @@ const edit = ({attributes, className, setAttributes}) => {
   /**
    * Return the block contents for rendering.
    */
-  return <div className={className}>div</div>
+  return <div className={className}></div>
 }
 
 edit.propTypes = {

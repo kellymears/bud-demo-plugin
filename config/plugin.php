@@ -1,26 +1,56 @@
 <?php
 
 return [
-    /**
-     * Plugin namespace
-     */
-    'namespace' => 'BudDemoPlugin',
 
-    /**
-     * Plugin base URL
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Plugin name
+    |--------------------------------------------------------------------------
+    |
+    | The name of the plugin.
+    |
+    */
+
+    'name' => 'ACME Co. Plugin',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Plugin url
+    |--------------------------------------------------------------------------
+    |
+    | The base URL of the plugin.
+    |
+    */
+
     'url' => plugins_url('', __DIR__),
 
-    /**
-     * Plugin filesystem
-     */
-    'filesystem' => [
-        'base' => plugin_dir_path(__DIR__),
-        'dist' => 'dist',
+    /*
+    |--------------------------------------------------------------------------
+    | Plugin directories
+    |--------------------------------------------------------------------------
+    |
+    | Important directories for the plugin.
+    |
+    */
+
+    'directories' => [
         'src' => 'src',
-        'blocks' => 'src/blocks',
-        'plugins' => 'src/plugins',
-        'storage' => 'storage',
-        'cache' => 'storage/cache',
+        'dist' => 'dist',
+        'config' => 'config',
+        'languages' => 'resources/languages',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Plugin files
+    |--------------------------------------------------------------------------
+    |
+    | Important files for the plugin.
+    |
+    */
+
+    'files' => [
+        'manifest' => 'dist/manifest.json',
+    ],
+
 ];

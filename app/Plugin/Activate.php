@@ -1,6 +1,6 @@
 <?php
 
-namespace BudDemoPlugin\Plugin;
+namespace AcmeCo\Plugin;
 
 /**
  * The plugin activation class.
@@ -9,6 +9,8 @@ class Activate
 {
     /**
      * Activate the plugin.
+     *
+     * @return void
      */
     public function __invoke(): void
     {

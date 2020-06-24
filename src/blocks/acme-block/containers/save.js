@@ -13,9 +13,9 @@ import PropTypes from 'prop-types'
  * @return {WPElement} Element to render.
  */
 const save = ({attributes}) => {
-  const className = getBlockDefaultClassName('bud-demo-plugin/acme-block')
+  const className = getBlockDefaultClassName('acme-co/acme-block')
 
-  return <>div</>
+  return <></>
 }
 
 save.propTypes = {}

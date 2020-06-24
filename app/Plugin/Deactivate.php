@@ -1,6 +1,6 @@
 <?php
 
-namespace BudDemoPlugin\Plugin;
+namespace AcmeCo\Plugin;
 
 /**
  * The plugin deactivation class.
@@ -9,6 +9,8 @@ class Deactivate
 {
     /**
      * Deactivate the plugin.
+     *
+     * @return void
      */
     public function __invoke(): void
     {

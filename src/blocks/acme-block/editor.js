@@ -15,18 +15,18 @@ import {attributes} from './attributes.json'
  * @param {string}             name
  * @param {BlockConfiguration} settings
  */
-registerBlockType('bud-demo-plugin/acme-block', {
+registerBlockType('acme-co/acme-block', {
   /**
    * The block title.
    * @type {string}
    */
-  title: __('ACME Co. Block', 'bud-demo-plugin'),
+  title: __('ACME Co. Block', 'acme-co'),
 
   /**
    * A short description of the block.
    * @type {string}
    */
-  description: __('Short description of acme-block', 'bud-demo-plugin'),
+  description: __('Short description of acme-block', 'acme-co'),
 
   /**
    * The block category.

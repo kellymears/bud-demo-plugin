@@ -1,6 +1,6 @@
-# bud-demo-plugin/bud-demo-plugin
+# acme-co/acme-block
 
-Bud output testing and demonstration
+Short description of acme-block
 
 This project was bootstrapped with [🌱 Bud](https://github.com/roots/bud).
 
@@ -15,7 +15,7 @@ You can install this plugin via Composer on a [Bedrock install](https://roots.io
 ### via Composer
 
 ```sh
-composer require bud-demo-plugin/bud-demo-plugin
+composer require acme-co/acme-block
 ```
 
 ### via WordPress Admin Panel

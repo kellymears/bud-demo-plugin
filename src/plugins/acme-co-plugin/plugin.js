@@ -1,15 +1,15 @@
 import {registerPlugin} from '@wordpress/plugins'
 
 /**
- * Plugin: acme-plugin
+ * Plugin: ACME Co. Plugin
  *
  * @param {string} name
  * @param {object} settings
  */
-const acmePlugin = registerPlugin('acme-plugin', {
+registerPlugin('acme-co-plugin', {
   render: () => {
     return null
   },
 })
 
-export default acmePlugin
+export default acmeCoPlugin
