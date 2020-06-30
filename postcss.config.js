@@ -3,5 +3,5 @@
  */
 
 module.exports = {
-  presets: ['@roots/budpack/postcss-preset-bud'],
+  presets: ['@roots/budpack/config/postcss'],
 }

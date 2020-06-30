@@ -16,9 +16,9 @@ bud.projectPath(__dirname)
   .alias({
     '@blocks': bud.src('blocks'),
     '@components': bud.src('components'),
-    '@plugins': bud.src('plugins'),
   })
   .browserSync({
+    enabled: true,
     proxy: 'acme.test',
   })
 

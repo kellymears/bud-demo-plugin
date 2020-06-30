@@ -1,11 +1,12 @@
 /**
- * Babel configuration
+ * Babel configuration.
  */
+const {resolve} = require('path')
 
 module.exports = {
   presets: [
-    ['@roots/budpack/babel-preset-bud', {
-      makepot: './resources/languages/plugin.pot',
+    ['@roots/budpack/config/babel', {
+      makepot: resolve(__dirname, 'resources/languages/plugin.pot'),
     }],
   ],
 }

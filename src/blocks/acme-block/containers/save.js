@@ -1,5 +1,6 @@
 /** @wordpress */
 import {getBlockDefaultClassName} from '@wordpress/blocks'
+import {InnerBlocks, RichText} from '@wordpress/block-editor'
 
 /** Modules */
 import PropTypes from 'prop-types'
@@ -14,10 +15,27 @@ import PropTypes from 'prop-types'
  */
 const save = ({attributes}) => {
   const className = getBlockDefaultClassName('acme-co/acme-block')
+  const {text} = attributes
 
-  return <></>
+  return (
+    <>
+      {text && (
+        <RichText.Content
+          tagName={'h2'}
+          className={`${className}__text`}
+          value={text}
+        />
+      )}
+
+      <InnerBlocks.Content />
+    </>
+  )
 }
 
-save.propTypes = {}
+save.propTypes = {
+  attributes: PropTypes.shape({
+    text: PropTypes.string,
+  }),
+}
 
 export {save}

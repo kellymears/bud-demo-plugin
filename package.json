@@ -17,13 +17,13 @@
   "private": true,
   "scripts": {
     "bud:generate": "bud",
-    "bud:dev": "budpack --env development",
-    "bud:build": "budpack --env production"
+    "dev": "budpack --env development",
+    "build": "budpack --env production"
   },
   "devDependencies": {
     "@roots/bud": "roots/bud#master",
     "@roots/bud-generators": "roots/bud-generators#master",
-    "@roots/budpack": "^0.0.9"
+    "@roots/budpack": "^0.0.11"
   },
   "dependencies": {}
 }

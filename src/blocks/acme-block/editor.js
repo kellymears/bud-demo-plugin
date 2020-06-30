@@ -79,7 +79,7 @@ registerBlockType('acme-co/acme-block', {
      * Dependent on the align definition.
      * @type {bool}
      */
-    alignWide: false,
+    alignWide: true,
 
     /**
      * This property adds a field to define a custom className

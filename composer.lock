@@ -61,7 +61,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:roots/bud-support",
-                "reference": "0dcfd3e39dff773641cbefb5621ca5fe87541f32"
+                "reference": "7d19d2102229804fb6650c89d11047d64aec2c2b"
             },
             "require": {
                 "php": "^7.2",
@@ -94,7 +94,7 @@
             ],
             "description": "Supporting scripts for bud-cli",
             "homepage": "https://roots.io/bud",
-            "time": "2020-06-24T13:24:42+00:00"
+            "time": "2020-06-29T17:22:34+00:00"
         }
     ],
     "packages-dev": [

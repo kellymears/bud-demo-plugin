@@ -5,6 +5,6 @@
 module.exports = {
   root: true,
   extends: [
-    require.resolve('@roots/budpack/eslint-config-bud'),
+    require.resolve('@roots/budpack/config/eslint'),
   ],
 }

@@ -32,19 +32,21 @@ class Register extends ServiceProvider
     {
         $this->bud['collection']::make(['editor','public'])->each(
             function ($asset) {
-                wp_register_script(
-                    "{$asset}/script",
-                    $this->bud['manifest']->asset("{$asset}.js")->url(),
-                    $this->bud['manifest']->asset("{$asset}.json")->dependencies(),
-                    null,
-                );
+                $this->bud['manifest']->has("{$asset}.js")
+                    && wp_register_script(
+                        "{$asset}/script",
+                        $this->bud['manifest']->asset("{$asset}.js")->url(),
+                        $this->bud['manifest']->asset("{$asset}.json")->dependencies(),
+                        null,
+                    );
 
-                wp_register_style(
-                    "{$asset}/style",
-                    $this->bud['manifest']->asset("{$asset}.css")->url(),
-                    [],
-                    null,
-                );
+                $this->bud['manifest']->has("{$asset}.css")
+                    && wp_register_style(
+                        "{$asset}/style",
+                        $this->bud['manifest']->asset("{$asset}.css")->url(),
+                        [],
+                        null,
+                    );
             }
         );
     }
