@@ -24,6 +24,5 @@
     "@roots/bud": "roots/bud#master",
     "@roots/bud-generators": "roots/bud-generators#master",
     "@roots/budpack": "^0.0.11"
-  },
-  "dependencies": {}
+  }
 }

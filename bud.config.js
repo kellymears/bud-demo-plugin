@@ -1,53 +1,32 @@
 const bud = require('@roots/budpack');
 
-/*
- |--------------------------------------------------------------------------
- | Project configuration
- |--------------------------------------------------------------------------
- |
- | Add assets you wish to enqueue in the context of the WordPress admin
- | and editor interfaces.
- |
- */
-
-bud.projectPath(__dirname)
+bud
   .srcPath('src')
   .distPath('dist')
-  .alias({
-    '@blocks': bud.src('blocks'),
-    '@components': bud.src('components'),
-  })
-  .browserSync({
-    enabled: true,
-    proxy: 'acme.test',
-  })
 
-/*
- |--------------------------------------------------------------------------
- | Editor assets
- |--------------------------------------------------------------------------
- |
- | Add assets you to enqueue in the context of the WordPress admin
- | and editor interfaces.
- |
- */
+bud.alias({
+  '@blocks': bud.src('blocks'),
+  '@components': bud.src('components'),
+})
+.sync({
+  proxy: 'http://bud-sandbox.valet',
+  port: 3010,
+})
 
-bud.entry('editor', [
-  bud.src('entry-editor.js'),
-])
+bud
+  .bundle('editor', [
+    bud.src('entry-editor.js'),
+  ])
+  .bundle('public', [
+    bud.src('entry-public.js'),
+  ])
+  .dependencyManifest()
+  .inlineManifest()
+  .vendor()
+  .hash();
 
-/*
- |--------------------------------------------------------------------------
- | Public assets
- |--------------------------------------------------------------------------
- |
- | Add assets to be enqueued on outward-facing site content in addition to
- | admin and editor interfaces.
- |
- */
-
-bud.entry('public', [
-  bud.src('entry-public.js'),
-])
+bud
+  .babel(bud.preset('babel/preset-wp'))
+  .postCss(bud.preset('postcss'))
 
 module.exports = bud

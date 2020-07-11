@@ -11,5 +11,3 @@ registerPlugin('acme-co-plugin', {
     return null
   },
 })
-
-export default acmeCoPlugin

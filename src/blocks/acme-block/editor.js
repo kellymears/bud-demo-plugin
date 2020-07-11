@@ -42,6 +42,12 @@ registerBlockType('acme-co/acme-block', {
   parent: null,
 
   /**
+   * Searchable keywords for discovery.
+   * @type {array}
+   */
+  keywords: ['test'],
+
+  /**
    * Block styles
    * @see https://git.io/JfZTu
    * @type {BlockStyle}
@@ -65,7 +71,7 @@ registerBlockType('acme-co/acme-block', {
      * copy the direct link.
      * @type {bool}
      */
-    anchor: false,
+    anchor: true,
 
     /**
      * Enable alignments.
@@ -86,13 +92,13 @@ registerBlockType('acme-co/acme-block', {
      * for the block wrapper.
      * @type {bool}
      */
-    customClassName: false,
+    customClassName: true,
 
     /**
      * Allow a block's markup to be edited.
      * @type {bool}
      */
-    html: false,
+    html: true,
 
     /**
      * Set to false to hide the block from the inserter so that it can
