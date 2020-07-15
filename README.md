@@ -1,6 +1,6 @@
-# acme-co/acme-block
+# acme-co/acme-project
 
-Short description of acme-block
+Anvil drop-shipping application
 
 This project was bootstrapped with [🌱 Bud](https://github.com/roots/bud).
 
@@ -15,7 +15,7 @@ You can install this plugin via Composer on a [Bedrock install](https://roots.io
 ### via Composer
 
 ```sh
-composer require acme-co/acme-block
+composer require acme-co/acme-project
 ```
 
 ### via WordPress Admin Panel

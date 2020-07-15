@@ -20,6 +20,7 @@ class Register extends ServiceProvider
       */
     public function boot(): void
     {
+        $this->registerEntry('vendor');
         $this->registerEntry('editor');
         $this->registerEntry('public');
     }
@@ -31,58 +32,33 @@ class Register extends ServiceProvider
      */
     public function registerEntry($asset): void
     {
-        /**
-         * Inline manifest.
-         */
-        $runtime = $this->bud['manifest']->has("runtime/{$asset}.js")
-            ? $this->bud['manifest']->asset("runtime/{$asset}.js")->url()
-            : null;
+        $entry = $this->maybeAsset($asset);
 
-        /**
-         * Inline manifest depends on
-         */
-        $runtimeDependencies = $this->bud['manifest']->has("runtime/{$asset}.json")
-            ? $this->bud['manifest']->asset("runtime/{$asset}.json")->json()->dependencies
-            : [];
-
-        /**
-         * If there is an inline manifest, the entrypoint relies on it in turn.
-         */
-        $scriptDependencies = $runtime ? ["{$asset}/script/runtime"] : [];
-
-        /**
-         * The entrypoint script.
-         */
-        $script = $this->bud['manifest']->has("{$asset}.js")
-            ? $this->bud['manifest']->asset("{$asset}.js")->url()
-            : null;
-
-        /**
-         * The entrypoint stylesheet.
-         */
-        $style = $this->bud['manifest']->has("{$asset}.css")
-            ? $this->bud['manifest']->asset("{$asset}.css")->url()
-            : null;
-
-        /**
-         * Register entrypoint runtime.
-         */
-        if ($runtime) {
-            wp_register_script("{$asset}/script/runtime", $runtime, $runtimeDependencies, null);
+        if ($entry->runtime) {
+            wp_register_script(
+                "acme-co/{$asset}/script/runtime",
+                $entry->runtime,
+                $entry->asset,
+                null
+            );
         }
 
-        /**
-         * Register entrypoint script.
-         */
-        if ($script) {
-            wp_register_script("{$asset}/script", $script, $scriptDependencies, null);
+        if ($entry->script) {
+            wp_register_script(
+                "acme-co/{$asset}/script",
+                $entry->script,
+                ["acme-co/{$asset}/script/runtime"],
+                null
+            );
         }
 
-        /**
-         * Register entrypoint stylesheet.
-         */
-        if ($style) {
-            wp_register_style("{$asset}/style", $style, [], null);
+        if ($entry->style) {
+            wp_register_style(
+                "acme-co/{$asset}/style",
+                $entry->style,
+                [],
+                null
+            );
         }
     }
 
@@ -93,9 +69,10 @@ class Register extends ServiceProvider
      */
     public function adminInit(): void
     {
-        wp_enqueue_script('editor/script/runtime');
-        wp_enqueue_script('editor/script');
-        wp_enqueue_style('editor/style');
+        wp_enqueue_script('acme-co/vendor/script');
+        wp_enqueue_script('acme-co/editor/script/runtime');
+        wp_enqueue_script('acme-co/editor/script');
+        wp_enqueue_style('acme-co/editor/style');
     }
 
     /**
@@ -105,8 +82,36 @@ class Register extends ServiceProvider
      */
     public function enqueueScripts(): void
     {
-        wp_enqueue_script('public/script/runtime');
-        wp_enqueue_script('public/script');
-        wp_enqueue_style('public/style');
+        wp_enqueue_script('acme-co/vendor/script');
+        wp_enqueue_script('acme-co/public/script/runtime');
+        wp_enqueue_script('acme-co/public/script');
+        wp_enqueue_style('acme-co/public/style');
     }
+
+    /**
+     * Maybe return asset path, maybe null
+     *
+     * @param string
+     * @return {string|null}
+     */
+     protected function maybeAsset($asset)
+     {
+        return (object) [
+            'runtime' => $this->bud['manifest']->has("runtime/{$asset}.js")
+                ? $this->bud['manifest']->asset("runtime/{$asset}.js")->url()
+                : null,
+
+            'script' => $this->bud['manifest']->has("{$asset}.js")
+                ? $this->bud['manifest']->asset("{$asset}.js")->url()
+                : null,
+
+            'style' => $this->bud['manifest']->has("{$asset}.css")
+                ? $this->bud['manifest']->asset("{$asset}.css")->url()
+                : null,
+
+            'asset' => $this->bud['manifest']->has("runtime/{$asset}.json")
+                ? $this->bud['manifest']->asset("runtime/{$asset}.json")->json()->dependencies
+                : null,
+        ];
+     }
 }

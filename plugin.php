@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:  acme-block
+ * Plugin Name:  acme-project
  * Plugin URI:   https://acme.co
- * Description:  Short description of acme-block
+ * Description:  Anvil drop-shipping application
  * Author:       Wiley C. <wiley@gmail.com>
  * License:      MIT
  * Text Domain:  acme-co
@@ -15,7 +15,7 @@ namespace AcmeCo;
 use Roots\Bud\Bud;
 
 /**
- * acme-co/acme-block
+ * acme-co/acme-project
  */
 (new class {
     /** @var string */

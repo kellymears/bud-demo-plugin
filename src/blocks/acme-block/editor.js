@@ -6,6 +6,7 @@ import {registerBlockType} from '@wordpress/blocks'
 import {edit} from './containers/edit'
 import {save} from './containers/save'
 import {attributes} from './attributes.json'
+import './editor.css'
 
 /**
  * Registers a new block provided a unique name and an object defining its
@@ -20,7 +21,7 @@ registerBlockType('acme-co/acme-block', {
    * The block title.
    * @type {string}
    */
-  title: __('ACME Co. Block', 'acme-co'),
+  title: __('Acme Co. Block', 'acme-co'),
 
   /**
    * A short description of the block.

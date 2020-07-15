@@ -1,8 +1,8 @@
 {
-  "name": "acme-co/acme-block",
+  "name": "acme-co/acme-project",
   "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "Short description of acme-block",
+  "description": "Anvil drop-shipping application",
   "homepage": "https://acme.co",
   "authors": [
     {
